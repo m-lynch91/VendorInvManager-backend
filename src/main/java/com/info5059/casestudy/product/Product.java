@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 public class Product {
     @Id
     private String Id;
-    private int vendorid;
+    private Integer vendorid;
     private String name;
     private BigDecimal purchaseprice;
     private BigDecimal msrp;
