@@ -23,6 +23,12 @@ public class ProductController {
         Iterable<Product> expenses = productRepository.findAll();
         return new ResponseEntity<Iterable<Product>> (expenses, HttpStatus.OK);
     }
+
+    @GetMapping("/api/products/{vendorid}")
+    public ResponseEntity<Iterable<Product>> findByVendor(@PathVariable Long vendorid) {
+        Iterable<Product> products = productRepository.findByVendorid(vendorid);
+        return new ResponseEntity<Iterable<Product>>(products, HttpStatus.OK);
+    }
     
     @PutMapping("/api/products")
     public ResponseEntity<Product> updateOne(@RequestBody Product product) {
