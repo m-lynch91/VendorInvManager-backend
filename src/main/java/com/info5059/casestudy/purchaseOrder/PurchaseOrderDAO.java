@@ -10,6 +10,8 @@ import com.info5059.casestudy.product.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
+
 
 @Component
 public class PurchaseOrderDAO {
@@ -31,26 +33,37 @@ public class PurchaseOrderDAO {
     @Transactional
     public PurchaseOrder create(PurchaseOrder orderFromClient) {
         PurchaseOrder realOrder = new PurchaseOrder();
-        realOrder.setPurchaseOrderDate(LocalDateTime.now());
         realOrder.setVendorid(orderFromClient.getVendorid());
         realOrder.setAmount(orderFromClient.getAmount());
+        realOrder.setPurchaseOrderDate(LocalDateTime.now());
         entityManager.persist(realOrder);
+        
+        BigDecimal totalAmount = BigDecimal.ZERO;
 
         for (PurchaseOrderLineItem lineItem : orderFromClient.getLineItems()) {
+
             PurchaseOrderLineItem realLineItem = new PurchaseOrderLineItem();
+            Product product = productRepository.getReferenceById(lineItem.getProductid());
+            BigDecimal price = product.getPurchaseprice();
+
             realLineItem.setPurchaseorderid(realOrder.getId());
             realLineItem.setProductid(lineItem.getProductid());
             realLineItem.setQuantity(lineItem.getQuantity());
             realLineItem.setPrice(lineItem.getPrice());
-            
             entityManager.persist(realLineItem);
+            
+            // calculate total purchase order amount
+            totalAmount = totalAmount.add(price.multiply(new BigDecimal(lineItem.getQuantity())));
 
             // update product inventory
-            Product product = productRepository.getReferenceById(lineItem.getProductid());
             product.setQuantityonorder(product.getQuantityonorder() + lineItem.getQuantity());
             productRepository.saveAndFlush(product);
+            
+
         }
 
+        totalAmount = totalAmount.multiply(new BigDecimal(1.13));
+        realOrder.setAmount(totalAmount);
 
 		// sequence to commit changes to db
         entityManager.flush();

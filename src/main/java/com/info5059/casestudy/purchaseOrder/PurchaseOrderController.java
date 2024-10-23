@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,17 @@ public class PurchaseOrderController {
     @Autowired
     private PurchaseOrderDAO purchaseOrderDAO;
 
-    @PostMapping("/api/purchaseOrders")
+    @Autowired
+    private PurchaseOrderRepository purchaseOrderRepository;
+
+    @GetMapping("/api/purchase-orders")
+    public ResponseEntity<Iterable<PurchaseOrder>> findAll() {
+     Iterable<PurchaseOrder> pos = purchaseOrderRepository.findAll();
+     return new ResponseEntity<Iterable<PurchaseOrder>>(pos, HttpStatus.OK);
+    }
+    
+
+    @PostMapping("/api/purchase-orders")
     public ResponseEntity<PurchaseOrder> addOne(@RequestBody PurchaseOrder purchaseOrder) {
         return new ResponseEntity<PurchaseOrder>(purchaseOrderDAO.create(purchaseOrder), HttpStatus.OK);
     }
