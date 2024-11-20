@@ -1,6 +1,8 @@
 package com.info5059.casestudy.product;
 
 import java.math.BigDecimal;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -37,6 +39,7 @@ public class Product {
      */
     private int quantityonorder;
     
+    @Column(columnDefinition="varbinary(1000)")
     private byte[] qrcode;
     private String qrcodetext;
 }
