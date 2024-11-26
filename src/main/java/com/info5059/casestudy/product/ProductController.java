@@ -37,12 +37,14 @@ public class ProductController {
 
     @PutMapping("/api/products")
     public ResponseEntity<Product> updateOne(@RequestBody Product product) {
+        product.setQrcode(qrCodeGenerator.generateQRCode(product.getQrcodetext()));
         Product updatedExpense = productRepository.save(product);
         return new ResponseEntity<Product>(updatedExpense, HttpStatus.OK);
     }
 
     @PostMapping("/api/products")
     public ResponseEntity<Product> addOne(@RequestBody Product product) {
+        product.setQrcode(qrCodeGenerator.generateQRCode(product.getQrcodetext()));
         Product newExpense = productRepository.save(product);
         return new ResponseEntity<Product>(newExpense, HttpStatus.OK);
     }
