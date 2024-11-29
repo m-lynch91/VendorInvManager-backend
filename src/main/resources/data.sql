@@ -14,26 +14,32 @@ INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, Econ
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
     VALUES ('7900X3D', 4, 'CPU', 700.00, 599.00, 3, 7, 8, 0, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
-    VALUES ('BL770', 3, 'Blender', 249.99, 199.99, 3, 6, 4, 2, null, null);
+    VALUES ('BL770', 1, 'Blender', 249.99, 199.99, 3, 6, 4, 2, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
-    VALUES ('102B', 4, 'Hunting Knife', 74.99, 50.00, 3, 5, 3, 2, null, null);
+    VALUES ('102B', 3, 'Hunting Knife', 74.99, 50.00, 3, 5, 3, 2, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
     VALUES ('5800X', 4, 'CPU', 300.00, 329.00, 4, 10, 7, 5, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
-    VALUES ('i7-12700K', 5, 'CPU', 400.00, 419.00, 6, 12, 10, 3, null, null);
+    VALUES ('i7-12700K', 4, 'CPU', 400.00, 419.00, 6, 12, 10, 3, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
-    VALUES ('GTX1660', 6, 'Graphics Card', 200.00, 249.00, 5, 10, 8, 4, null, null);
+    VALUES ('GTX1660', 4, 'Graphics Card', 200.00, 249.00, 5, 10, 8, 4, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
-    VALUES ('RTX3080', 6, 'Graphics Card', 800.00, 699.00, 3, 5, 2, 3, null, null);
+    VALUES ('RTX3080', 4, 'Graphics Card', 800.00, 699.00, 3, 5, 2, 3, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
     VALUES ('NM800', 3, 'Mixer', 150.00, 129.00, 2, 6, 4, 2, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
-    VALUES ('SG200', 7, 'Vacuum Cleaner', 100.00, 149.00, 5, 10, 6, 3, null, null);
+    VALUES ('SG200', 1, 'Vacuum Cleaner', 100.00, 149.00, 5, 10, 6, 3, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
-    VALUES ('XT500', 8, 'Drone', 250.00, 299.00, 4, 8, 3, 1, null, null);
+    VALUES ('XT500', 3, 'Drone', 250.00, 299.00, 4, 8, 3, 1, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
     VALUES ('WT101', 2, 'Wrench Toolset', 49.99, 59.99, 6, 12, 10, 5, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
-    VALUES ('LT500', 5, 'Lawn Trimmer', 120.00, 139.99, 5, 10, 4, 6, null, null);
+    VALUES ('LT500', 1, 'Lawn Trimmer', 120.00, 139.99, 5, 10, 4, 6, null, null);
 INSERT INTO Product (Id, VendorId, Name, PurchasePrice, MSRP, ReorderPoint, EconomicOrderQuantity, QuantityOnHand, QuantityOnOrder, QRCode, QRCodeText)
     VALUES ('BK202', 1, 'Book Shelf', 75.00, 99.99, 3, 8, 5, 2, null, null);
+
+--initial purchase order data
+INSERT INTO Purchase_Order (Amount, Purchase_Order_Date, VendorId)
+    VALUES (8475.00, '2024-11-29 11:00:26.952567', 4);
+INSERT INTO Purchase_Order_Line_Item (Price, Quantity, PurchaseOrderId, ProductId)
+    VALUES (500.00, 15, 1, '7800X3D');

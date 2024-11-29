@@ -190,7 +190,7 @@ public abstract class PDFGenerator extends AbstractPdfView {
             document.add(table); 
             document.add(new Paragraph("\n")); 
  
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a"); 
             document.add(new Paragraph(dateTimeFormatter.format(LocalDateTime.now())) 
                 .setTextAlignment(TextAlignment.CENTER)); 
             document.close(); 

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import com.info5059.casestudy.product.ProductRepository;
 import com.info5059.casestudy.vendor.VendorRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @CrossOrigin
@@ -41,6 +44,11 @@ public class PurchaseOrderController {
     public ResponseEntity<Iterable<PurchaseOrder>> findAll() {
      Iterable<PurchaseOrder> pos = purchaseOrderRepository.findAll();
      return new ResponseEntity<Iterable<PurchaseOrder>>(pos, HttpStatus.OK);
+    }
+    
+    @GetMapping("/api/purchase-orders/{vendorid}")
+    public ResponseEntity<Iterable<PurchaseOrder>> findByVendor(@PathVariable Long vendorid) {
+        return new ResponseEntity<Iterable<PurchaseOrder>>(purchaseOrderRepository.findByVendorid(vendorid), HttpStatus.OK);
     }
     
 
